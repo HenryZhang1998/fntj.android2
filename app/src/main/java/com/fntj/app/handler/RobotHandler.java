@@ -5,15 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.fntj.app.BuildConfig;
 import com.fntj.app.MyApplication;
 import com.fntj.app.dialog.NavingDialog;
+import com.fntj.app.net.RobotApi;
+import com.fntj.app.util.RecognizeWaitTimer;
 import com.fntj.lib.zb.util.CommonUtil;
+import com.fntj.lib.zb.util.JSON;
+import com.fntj.lib.zb.util.StringUtil;
+import com.iflytek.cloud.SpeechError;
 import com.reeman.nerves.RobotActionProvider;
 import com.reeman.reemanrobotdemo.aipower.ApRecognizeListener;
 import com.reeman.reemanrobotdemo.aipower.ApResultProcessor;
@@ -29,7 +37,9 @@ import com.speech.abstracts.IResultProcessor;
 import com.speech.abstracts.ISpeakListener;
 import com.speech.processor.SpeechPlugin;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RobotHandler implements SpeekHandler {
@@ -50,6 +60,8 @@ public class RobotHandler implements SpeekHandler {
         put("上厕所", "卫生间");
     }};
 
+    private static String wifiIP = null;
+    private static final String locationsPath = "reeman/data/locations.cfg";
     public static Map<String, String> Locations = new HashMap<String, String>() {{
         put("前台", "-1.25,-4.44,-45.83");
         put("充电站", "0.46,-0.27,-20.05");
@@ -84,6 +96,11 @@ public class RobotHandler implements SpeekHandler {
             filter.addAction("REEMAN_BROADCAST_SCRAMSTATE");
             filter.addAction("REEMAN_BODY_POSITION");
             filter.addAction("REEMAN_BROADCAST_MICROWAVE_SENSOR_STATE");
+            filter.addAction(BROADCAST_REEMAN_BROADCAST_WAKEUP);
+            filter.addAction(ApViewSpeakListener.BROADCAST_speek_onBegin);
+            filter.addAction(ApRecognizeListener.BROADCAST_recognize_onBegin);
+            filter.addAction(ApRecognizeListener.BROADCAST_recognize_onEnd);
+            filter.addAction(ApRecognizeListener.BROADCAST_recognize_onError);
 
             MyApplication.getInstance().registerReceiver(receiver, filter);
 
@@ -116,6 +133,29 @@ public class RobotHandler implements SpeekHandler {
                 // 硬件控制
                 hardSDk = ReemanSdkImpl.CreateInstance(MyApplication.getInstance()); // 建议在这里初始化
 
+                //读取本地坐标数据,获取配置文件中导航地点名称及坐标集合
+
+                //SpeechPlugin 内部提供，主动获取机器 sdcard 的 location 中配置的导航地点名称及坐标集合。
+                // 配置文件位置 sdcard/reeman/data/locations.cfg
+                File navFile = new File(Environment.getExternalStorageDirectory(), locationsPath);
+                File navFileDir = navFile.getParentFile();
+                if (!navFileDir.exists()) {
+                    navFileDir.mkdirs();
+                }
+
+                //for test
+//                FileUtil.writeSDFile(
+//                        "前台:-1.25,-4.44,-45.83;充电站:0.46,-0.27,-20.05;铂:3.64,2.62,-24.06;312:-0.93,-10.99,-108.86;311:-2.3,-14.67,-91.1;310:-2.97,-18.54,-84.79;309:-3.78,-24.28,71.61;308:-4.12,-26.17,-104.27;307:-5.37,-30.87,-173.03;306:-11.95,-31,-49.84;305:-11.97,-30.99,-169.02;304:-11.96,-30.98,163.86;303:-11.71,-28.75,96.25;302:-10.64,-24.83,85.94;301:-10.25,-19.34,-108.28;315:0.19,5.64,13.17;316:-3.28,6.9,-5.72;317:-3.29,6.91,148.39;318:-2.44,4.23,156.99;319:-2.46,4.23,138.65;321:-5.71,-11.08,170.74;322:-3.03,-16.72,-101.41;323:-3.87,-20.61,-99.69",
+//                        locationsPath);
+
+                if (navFile.exists()) {
+                    Map<String, String> navList = SpeechPlugin.getInstance().getContactLocations();
+
+                    for (Map.Entry<String, String> kv : navList.entrySet()) {
+                        Locations.put(kv.getKey(), kv.getValue());
+                    }
+                }
+
             } catch (Exception ex2) {
                 ex2.printStackTrace();
                 Log.e("init", ex2.getMessage(), ex2);
@@ -130,34 +170,38 @@ public class RobotHandler implements SpeekHandler {
             // 连接外设
             mConnectServer = ConnectServer.getInstance(MyApplication.getInstance(), connection);
             mConnectServer.registerROSListener(new RosProcess());   //设置外设的监听回调(物体识别，人脸识别，导航等回调)
+
+            //查询wifi ip
+            RobotActionProvider.getInstance().sendRosCom("ip:request");
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void onResume() {
+        Log.v("RobotHandler", "onResume");
         try {
             BaiLocHelper.getInstance().start();
             SpeechPlugin.getInstance().startRecognize();
-            Log.v("ProgressActivity", "flavor: " + BuildConfig.FLAVOR);
-            //SpeechPlugin.getInstance().startSpeak("欢迎使用");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void onPause() {
+        Log.v("RobotHandler", "onPause");
         try {
             BaiLocHelper.getInstance().stop();
             SpeechPlugin.getInstance().stopSpeak();
             SpeechPlugin.getInstance().stopRecognize();
-            Log.v("MainActivity", "onPause");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void onDestroy() {
+        Log.v("RobotHandler", "onDestroy");
         if (receiver != null) {
             try {
                 MyApplication.getInstance().unregisterReceiver(receiver);
@@ -195,22 +239,26 @@ public class RobotHandler implements SpeekHandler {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            Log.e("speek", ex.getMessage(), ex);
+            Log.e("stopSpeek", ex.getMessage(), ex);
         }
 
     }
 
     public void doSpeek(String speek) {
+
         try {
             Log.i("speek", speek);
+            SpeechPlugin.getInstance().startSpeak(speek);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Log.e("speek", ex.getMessage(), ex);
+        }
+    }
 
-            //new Thread(() -> {
-//                if (SpeechPlugin.getInstance().isSpeaking()) {
-//                    SpeechPlugin.getInstance().stopSpeak();
-//                }
-
-                SpeechPlugin.getInstance().startSpeak(speek);
-            //}).start();
+    public void doSpeek(String speek, ISpeakListener listener) {
+        try {
+            Log.i("speek", speek);
+            SpeechPlugin.getInstance().startSpeak(speek, listener);
         } catch (Exception ex) {
             ex.printStackTrace();
             Log.e("speek", ex.getMessage(), ex);
@@ -406,6 +454,18 @@ public class RobotHandler implements SpeekHandler {
                 //0 没有人；1 有人
 
                 Log.v("receiver", "SENSOR_STATE: " + state);
+            } else if (ApViewSpeakListener.BROADCAST_speek_onBegin.equals(action)) {
+                //机器人开始说话时，取消监听
+                SpeechPlugin.getInstance().stopRecognize();
+            } else if (ApRecognizeListener.BROADCAST_recognize_onBegin.equals(action)) {
+                //开始识别语音
+            } else if (ApRecognizeListener.BROADCAST_recognize_onEnd.equals(action)) {
+                //识别语音结束，停止监听识音
+            } else if (ApRecognizeListener.BROADCAST_recognize_onError.equals(action)) {
+                //识别语音错误，停止监听识音
+            } else if (BROADCAST_REEMAN_BROADCAST_WAKEUP.equals(action)) {
+                //唤醒
+                RobotHandler.getInstance().doSpeek("你好，请说");
             }
         }
     };
@@ -491,6 +551,40 @@ public class RobotHandler implements SpeekHandler {
                     //Log.e(TAG, "收到导航信息回调：  uwb错误：:" + result);
                     intent.setAction(BROADCAST_uwb);
                     MyApplication.getInstance().sendBroadcast(intent);
+                } else if (result.startsWith("ip:")) {
+                    Log.i("ip", result);
+                    //ip:ssid:x.x.x.x
+
+                    String[] arr = result.split(":");
+                    if (arr.length < 3) {
+                        return;
+                    }
+
+                    wifiIP = arr[2];
+                    Log.i("wifiIP", wifiIP);
+
+                    //获取局域网机器目标点列表
+                    String url = "http://" + wifiIP + "/reeman/android_target";
+
+                    RobotApi.simpleGet(MyApplication.getInstance(), url, new RobotApi.MyResponseListener<String>() {
+                        @Override
+                        public void onError(String message, String code) {
+                            Log.e(code, message);
+                        }
+
+                        @Override
+                        public void onSuccess(String data) {
+                            Log.i("android_target", data);
+                            //{"A点":["-3.66","-0.06","-110.96"],"B点":["-4.27","-1.36","0.00"],"C点":["-3.47","-2.27","73.41"],"D点":["-2.54","-1.29","180.00"]}
+
+                            JSONObject j = JSON.parseObject(data);
+                            for (String key : j.keySet()) {
+                                List<String> points = j.getJSONArray(key).toJavaList(String.class);
+
+                                Locations.put(key, StringUtil.join(points, ","));
+                            }
+                        }
+                    });
                 }
             }
         }
@@ -758,6 +852,7 @@ public class RobotHandler implements SpeekHandler {
     public static final String BROADCAST_POWER_CONNECTE = "ACTION_POWER_CONNECTE_REEMAN";
     public static final String BROADCAST_DOCKNOTFOUND = "AUTOCHARGE_ERROR_DOCKNOTFOUND";
     public static final String BROADCAST_DOCKINGFAILURE = "AUTOCHARGE_ERROR_DOCKINGFAILURE";
+    public static final String BROADCAST_REEMAN_BROADCAST_WAKEUP = "REEMAN_BROADCAST_WAKEUP";
 
 
 }

@@ -24,6 +24,7 @@ import com.fntj.app.listener.NavDistClickListener;
 import com.fntj.app.listener.ScannerOnDataListener;
 import com.fntj.app.manager.FNBatteryManager;
 import com.fntj.app.net.NetworkUtil;
+import com.fntj.app.util.DoctorUtil;
 import com.fntj.app.util.SU;
 import com.fntj.lib.zb.base.BaseActivity;
 import com.fntj.lib.zb.interfaces.OnBottomDragListener;
@@ -68,6 +69,12 @@ public class MainActivity2 extends BaseActivity implements OnBottomDragListener 
         ifly_id = intent.getStringExtra("ifly_id");
         ifly_id2 = intent.getStringExtra("ifly_id2");
         reeman_id = intent.getStringExtra("reeman_id");
+
+        DoctorUtil.init();
+
+        //for test
+        String doc = DoctorUtil.findName("你好，我想了解下礼寺医生");
+        System.out.println(doc);
 
         SpeechUtility.createUtility(this, "appid=" + ifly_id);
 
@@ -396,6 +403,14 @@ public class MainActivity2 extends BaseActivity implements OnBottomDragListener 
 
         robotHandler.registVoice(this, (voice) -> {
             if (StringUtil.isEmpty(voice)) {
+                return;
+            }
+
+            //匹配医生
+            String doctor = DoctorUtil.findName(voice);
+            if(!StringUtil.isEmpty(doctor)) {
+                showShortToast("匹配到医生：" + doctor);
+                //TODO:打开医生详情页
                 return;
             }
 

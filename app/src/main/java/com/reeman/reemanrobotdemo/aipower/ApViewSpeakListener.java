@@ -18,6 +18,7 @@ import com.speech.abstracts.ISpeakListener;
 
 public class ApViewSpeakListener implements ISpeakListener {
 
+    public static final String BROADCAST_speek_onBegin = "robot.speek.onBegin";
     private static final String TAG = "ApViewSpeakListener";
     private static final Handler handler = new Handler();
 
@@ -54,7 +55,7 @@ public class ApViewSpeakListener implements ISpeakListener {
     public void onSpeakBegin(String text) {
 
         Intent intent = new Intent();
-        intent.setAction("robot.speek.onBegin");
+        intent.setAction(BROADCAST_speek_onBegin);
         intent.putExtra("text", text);
 
         MyApplication.getInstance().sendBroadcast(intent);

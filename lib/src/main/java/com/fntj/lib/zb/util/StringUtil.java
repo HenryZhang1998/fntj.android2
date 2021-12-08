@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -886,6 +888,19 @@ public class StringUtil {
             default:
                 return s;
         }
+    }
+
+    public static <T> String join(Collection<T> list, String split) {
+        if (list == null || list.size() == 0) return "";
+
+        StringBuilder sb = new StringBuilder();
+        for (T s : list) {
+            if (sb.length() > 0) {
+                sb.append(split);
+            }
+            sb.append(s);
+        }
+        return sb.toString();
     }
 
 

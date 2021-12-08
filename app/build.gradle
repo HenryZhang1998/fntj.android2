@@ -118,6 +118,8 @@ dependencies {
     implementation 'com.teprinciple:updateapputils:2.0.2'
     implementation 'com.liulishuo.filedownloader:library:1.7.7'
 
+    implementation 'com.belerweb:pinyin4j:2.5.1'
+
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
 

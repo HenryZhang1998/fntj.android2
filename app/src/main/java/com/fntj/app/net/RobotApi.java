@@ -44,7 +44,7 @@ public class RobotApi {
         });
     }
 
-    private static <T> void simpleGet(Context context, Class<T> tClass, String url, final MyResponseListener<T> listener) {
+    public static <T> void simpleGet(Context context, Class<T> tClass, String url, final MyResponseListener<T> listener) {
 
         new AsyncTask<Void, Void, Exception>() {
 
@@ -86,6 +86,28 @@ public class RobotApi {
                     } else {
                         listener.onError(msg, code);
                     }
+                }
+
+                return null;
+            }
+        }.execute();
+    }
+
+    public static void simpleGet(Context context, String url, final MyResponseListener<String> listener) {
+
+        new AsyncTask<Void, Void, Exception>() {
+
+            @Override
+            protected Exception doInBackground(Void... voids) {
+                WebClient client = buildWebClient(context);
+
+                APIResult<String> result = client.get(url);
+
+                if (!result.isSuccess()) {
+                    listener.onError(result.getMessage(), result.getCode());
+                } else {
+                    String json = result.getData();
+                    listener.onSuccess(json);
                 }
 
                 return null;
@@ -330,6 +352,9 @@ public class RobotApi {
         }
 
         WebClient client = new WebClient();
+        if("2c4099480962c5ba".equals(clientId)) {
+            appKey = "14531950";
+        }
         client.setHeader("clientId", clientId);
         client.setHeader("appKey", appKey);
         client.setHeader("token", token);

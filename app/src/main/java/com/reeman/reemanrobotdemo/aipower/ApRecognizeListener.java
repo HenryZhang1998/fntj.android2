@@ -18,6 +18,13 @@ import static com.fntj.app.handler.RobotHandler.BROADCAST_voice;
 public class ApRecognizeListener implements IRecognizeListener {
 
     private static final String TAG = "ApRecognizeListener";
+    //语音识别开始
+    public static final String BROADCAST_recognize_onBegin = "robot.recognize.onBegin";
+    //语音识别结束
+    public static final String BROADCAST_recognize_onEnd = "robot.recognize.onEnd";
+    //语音识别错误
+    public static final String BROADCAST_recognize_onError = "robot.recognize.onError";
+
     private Context context;
     public ApRecognizeListener(Context context){
         this.context = context;
@@ -25,7 +32,7 @@ public class ApRecognizeListener implements IRecognizeListener {
     @Override
     public void onBeginOfSpeech() {
         Intent intent = new Intent();
-        intent.setAction("robot.recognize.onBegin");
+        intent.setAction(BROADCAST_recognize_onBegin);
         MyApplication.getInstance().sendBroadcast(intent);
     }
 
@@ -41,7 +48,7 @@ public class ApRecognizeListener implements IRecognizeListener {
             Log.e(TAG, "code:" + code + ", msg:" + msg);
 
             Intent intent = new Intent();
-            intent.setAction("robot.recognize.onError");
+            intent.setAction(BROADCAST_recognize_onError);
             intent.putExtra("code", code);
             intent.putExtra("msg", msg);
 
@@ -53,7 +60,7 @@ public class ApRecognizeListener implements IRecognizeListener {
     public void onEndOfSpeech() {
 
         Intent intent = new Intent();
-        intent.setAction("robot.recognize.onEnd");
+        intent.setAction(BROADCAST_recognize_onEnd);
 
         MyApplication.getInstance().sendBroadcast(intent);
     }
