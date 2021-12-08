@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edit_item_text_bg"
+    android:padding="@dimen/item_left_tv_padding"
+    android:clickable="true"
+    android:orientation="vertical" >
+
+    <ScrollView style="@style/match_match" >
+
+        <LinearLayout style="@style/ll_vertical_match_match" >
+
+            <!--<LinearLayout
+                style="@style/content_item_white" >
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/content_item_rt_tv"
+                    android:layout_width="match_parent"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:text="项目检查意义" />
+            </LinearLayout>-->
+
+            <LinearLayout
+                style="@style/content_item_white" android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvsense"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="--" />
+            </LinearLayout>
+
+            <View style="@style/divider_horizontal_1px" android:layout_marginBottom="@dimen/item_padding_bottom" />
+
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="科室：" />
+
+                <TextView
+                    android:id="@+id/tvdept"
+                    style="@style/content_item_rt_tv"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="适用性别：" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    style="@style/content_item_rt_tv"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="餐前餐后标志：" />
+
+                <TextView
+                    android:id="@+id/tvmeal"
+                    style="@style/content_item_rt_tv"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="注意事项：" />
+
+                <TextView
+                    android:id="@+id/tvtips"
+                    style="@style/content_item_rt_tv"
+                    android:layout_width="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="女性注意事项：" />
+
+                <TextView
+                    android:id="@+id/tvfemalTips"
+                    android:layout_width="match_parent"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/content_item_white" >
+
+                <TextView
+                    style="@style/content_item_lf_tv"
+                    android:layout_width="150dp"
+                    android:gravity="right|center_horizontal|center_vertical"
+                    android:text="项目单价：" />
+
+                <TextView
+                    android:id="@+id/tvprice"
+                    android:layout_width="match_parent"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="center_vertical"
+                    android:text="--" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

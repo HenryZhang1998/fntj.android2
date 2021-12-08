@@ -1,0 +1,130 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.compileSdk
+    buildToolsVersion build_versions.buildTools
+    defaultConfig {
+        applicationId "com.fntj.app"
+        minSdkVersion build_versions.minSdk
+        targetSdkVersion build_versions.targetSdk
+        versionCode app_version.versionCode
+        versionName app_version.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi-v7a','armeabi','x86_64', 'x86'
+        }
+    }
+    buildTypes {
+        debug {
+            buildConfigField( "String", "SERVER_URL", "\"http://fntj.devid.cn/api\"" )
+            //buildConfigField( "String", "Demo_ClientId", "\"demo202103010001\"" )
+            //buildConfigField( "String", "Demo_AppKey", "\"456456\"" )
+            //buildConfigField( "String", "BUILD_TYPE", "\"debug\"")
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField( "String", "SERVER_URL", "\"http://fntj.devid.cn/api\"" )
+            //buildConfigField( "String", "Demo_ClientId", "\"\"" )
+            //buildConfigField( "String", "Demo_AppKey", "\"\"" )
+            //buildConfigField( "String", "BUILD_TYPE", "\"release\"")
+        }
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            def fileName
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                fileName = "fntj_${variant.buildType.name}_${defaultConfig.versionName}_${releaseTime()}.apk"
+                outputFileName = fileName
+            }
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmmss")
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation files('libs/Scanner.jar')
+    implementation files('libs/serialport-1.0.1.aar')
+//    implementation files('./libs/Msc.jar')
+//    implementation files('./libs/Reeman3399.180322.jar')
+    implementation files('libs/ReemanAI.v3.19071503.jar')
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
+
+    implementation deps.androidx.design
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
+
+    implementation deps.kotlin
+    implementation deps.corektx
+
+    implementation deps.easypermissions
+
+    implementation project(':lib')
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.loopj.android:android-async-http:1.4.8'
+    implementation 'com.airbnb.android:lottie:3.7.0'
+    implementation 'com.teprinciple:updateapputils:2.0.2'
+    implementation 'com.liulishuo.filedownloader:library:1.7.7'
+
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+
+//    //这里的版本号换成跟项目的appcompat一致，尽量减少一些未知的问题
+//    compile 'com.android.support:appcompat-v7:28.0.0'
+//    compile 'com.android.support:cardview-v7:28.0.0'
+//
+//    //androidx
+//    implementation 'androidx.cardview:cardview:1.0.0'
+}

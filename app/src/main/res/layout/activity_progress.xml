@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/activity_page"
+    android:fitsSystemWindows="false"
+    android:keepScreenOn="true"
+    android:background="@drawable/bg_2" >
+
+    <RelativeLayout style="@style/topbar_bg" >
+
+        <ImageButton
+            style="@style/topbar_return_img"
+            android:scaleType="fitCenter"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="20dp"
+            android:alpha="1"
+        />
+
+        <TextView
+            android:id="@+id/tbBarTitle"
+            style="@style/topbar_title"
+            android:layout_centerHorizontal="true"
+            android:textSize="42dp"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:alpha="1"/>
+
+        <ImageButton
+            style="@style/topbar_right_img"
+            android:id="@+id/btn_refresh"
+            android:scaleType="fitCenter"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/refresh_128_white"
+            android:alpha="1"
+            android:onClick="refreshData"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            style="@style/text_small_black"
+            android:text="体检编号："
+            android:textSize="28dp"
+            android:layout_marginLeft="10sp"
+
+            />
+        <TextView
+            android:id="@+id/tvCode"
+            style="@style/text_big_black"
+            android:text="--"
+            android:textSize="32dp"
+            android:layout_marginLeft="10sp"
+            />
+        <TextView
+            style="@style/text_small_black"
+            android:text="姓名："
+            android:textSize="28dp"
+            android:layout_marginLeft="30sp"
+            />
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/text_big_black"
+            android:text="--"
+            android:textSize="32dp"
+            android:layout_marginLeft="10sp"
+            />
+        <TextView
+            style="@style/text_small_black"
+            android:text="性别："
+            android:textSize="28dp"
+            android:layout_marginLeft="30sp"
+            />
+        <TextView
+            android:id="@+id/tvGender"
+            style="@style/text_big_black"
+            android:text="--"
+            android:textSize="32dp"
+            android:layout_marginLeft="10sp"
+            />
+        <TextView
+            style="@style/text_small_black"
+            android:text="上一项目："
+            android:textSize="28dp"
+            android:layout_marginLeft="30sp"
+            />
+        <TextView
+            android:id="@+id/tvlastDepartmentName"
+            style="@style/text_big_black"
+            android:text="--"
+            android:textSize="32dp"
+            android:layout_marginLeft="10sp"
+            />
+
+        <TextView
+            style="@style/text_small_black"
+            android:textColor="@color/red"
+            android:text="下一项目："
+            android:textSize="28dp"
+            android:layout_marginLeft="30sp"
+            />
+        <TextView
+            android:id="@+id/tvNextProj"
+            style="@style/text_big_black"
+            android:textColor="@color/red"
+            android:text="--"
+            android:textSize="32dp"
+            android:layout_marginLeft="10sp"
+            />
+
+        <FrameLayout
+            android:id="@+id/btnNavFrameLayout"
+            android:orientation="vertical"
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/btnNav"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:lottie_fileName="lottie/54943-button-background.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:drawableLeft="@drawable/send_light"
+                android:paddingLeft="60dp"
+                android:text="开始引导"
+                android:textSize="42dp"
+                android:gravity="left|center_vertical"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                />
+        </FrameLayout>
+
+    </LinearLayout>
+    <View style="@style/divider_horizontal_1px" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32dp"
+                android:text="已完成项目："/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBaseRecycler1"
+                style="@style/lv"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_no1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="暂无项目"
+                android:textSize="26sp"
+                android:padding="10sp"
+                android:visibility="visible"
+                android:layout_gravity="center|center_vertical|center_horizontal"
+                android:gravity="center|center_vertical|center_horizontal"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32dp"
+                android:text="未完成项目："/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBaseRecycler2"
+                style="@style/lv"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/tv_no2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="暂无项目"
+                android:textSize="26sp"
+                android:padding="10sp"
+                android:visibility="visible"
+                android:layout_gravity="center|center_vertical|center_horizontal"
+                android:gravity="center|center_vertical|center_horizontal"
+
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

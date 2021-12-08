@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/activity_page"
+    android:keepScreenOn="true"
+    android:background="@drawable/bg_2" >
+
+    <RelativeLayout style="@style/topbar_bg" >
+
+        <ImageButton style="@style/topbar_return_img"
+            android:scaleType="fitCenter"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            style="@style/topbar_title"
+            android:layout_centerHorizontal="true"
+            android:textSize="42dp"
+            android:text="标题"
+            android:textColor="@color/white"
+            android:alpha="1" />
+
+        <ImageButton
+            style="@style/topbar_right_btn"
+            android:onClick="onSearchClick"
+            android:scaleType="fitCenter"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/search_128_white"
+            android:alpha="1"/>
+    </RelativeLayout>
+
+    <!-- BaseListXXX的子类布局layout中，AbsListView必须有，且它的id必须按以下写法。padding会导致smoothScrollToPosition失效 -->
+
+    <GridView
+        android:id="@id/lvBaseList"
+        style="@style/lv"
+        android:layout_margin="18sp"
+        android:layout_weight="1"
+        android:horizontalSpacing="18sp"
+        android:numColumns="4"
+        android:verticalSpacing="18sp" />
+
+</LinearLayout>

@@ -1,0 +1,223 @@
+<resources>
+    <string name="app_name">福能体检助手</string>
+    <string name="app_slogan">福能体检助手</string>
+    <string name="app_version">1.0</string>
+    <string name="permission_camera">App扫码需要用到拍摄权限</string>
+    <string name="permission_external_storage">App需要用到读写权限</string>
+    <string name="tips_scan_code">将二维码/条形码放入框内，即可自动扫描</string>
+    <string name="qr_code">二维码</string>
+    <string name="bar_code">条形码</string>
+    <string name="welcome">欢迎使用福能体检智能导诊系统，小曼为您服务</string>
+    <!--<string name="zsk">知识库</string>-->
+    <string name="zsk">体检项目科普</string>
+
+    <string name="share_app">福能体检助手</string>
+    <string name="page_return">返回</string>
+    <string name="remind">提示</string>
+    <string name="update">更新</string>
+    <string name="initializing">正在初始化，请稍侯……</string>
+    <string name="logging">正在登录，请稍侯……</string>
+    <string name="login_faild">登录失败，请检查网络后重试</string>
+    <string name="login_succeed">登录成功</string>
+    <string name="exitting">正在退出，请稍侯……</string>
+    <string name="loading">正在加载，请稍后...</string>
+    <string name="get_failed">获取失败，请检查网络后重试</string>
+    <string name="get_succeed">获取成功</string>
+    <string name="adding">正在添加，请稍后...</string>
+    <string name="add_failed">添加失败，请检查网络后重试</string>
+    <string name="add_succeed">添加成功</string>
+    <string name="saving">正在保存，请稍后...</string>
+    <string name="save_failed">保存失败，请检查网络后重试</string>
+    <string name="save_succeed">保存成功</string>
+    <string name="deleting">正在删除，请稍后...</string>
+    <string name="delete_failed">删除失败，请检查网络后重试</string>
+    <string name="delete_succeed">删除成功</string>
+    <string name="changing">正在修改，请稍后...</string>
+    <string name="change_failed">修改失败，请检查网络后重试</string>
+    <string name="change_succeed">修改成功</string>
+    <string name="pull_to_refresh_pull_label">下拉刷新…</string>
+    <string name="pull_to_refresh_release_label">放开以刷新…</string>
+    <string name="pull_to_refresh_refreshing_label">正在载入…</string>
+    <string name="function_will_coming_soon">这个功能即将推出^_^</string>
+    <string name="net_error">网络异常，请稍后重试</string>
+    <string name="no_more">没有更多了</string>
+    <string name="no_sdcard">请插入SD卡</string>
+    <string name="openning">正在开启，请稍后...</string>
+    <string name="open_failed">开启失败，请检查网络后重试</string>
+    <string name="open_succeed">开启成功</string>
+    <string name="closing">正在关闭，请稍后...</string>
+    <string name="close_failed">关闭失败，请检查网络后重试</string>
+    <string name="close_succeed">关闭成功</string>
+    <string name="sending">正在发送，请稍后...</string>
+    <string name="send_failed">发送失败，请检查网络后重试</string>
+    <string name="send_succeed">发送成功</string>
+
+
+    <!-- 讯飞appid -->
+    <string name="ify_app_id">5b95eb16</string>
+    <!-- 听写 -->
+    <string name="ify_text_begin">请开始说话…</string>
+    <string name="ify_text_begin_recognizer">开始音频流识别</string>
+    <string name="pref_key_iat_show">iat_show</string>
+    <string name="text_show_iat_result">听写结果显示</string>
+    <string name="pref_title_iat_show">显示听写界面</string>
+
+    <string-array name="engine_values">
+        <item>local</item>
+        <item>cloud</item>
+    </string-array>
+    <string-array name="voicer_cloud_entries">
+        <item>小燕—女青、中英、普通话</item>
+        <item>小宇—男青、中英、普通话</item>
+        <item>凯瑟琳—女青、英</item>
+        <item>亨利—男青、英</item>
+        <item>玛丽—女青、英</item>
+        <item>小研—女青、中英、普通话</item>
+        <item>小琪—女青、中英、普通话</item>
+        <item>小峰—男青、中英、普通话</item>
+        <item>小梅—女青、中英、粤语</item>
+        <item>小莉—女青、中英、台湾普通话</item>
+        <item>小蓉—女青、中、四川话</item>
+        <item>小芸—女青、中、东北话</item>
+        <item>小坤—男青、中、河南话</item>
+        <item>小强—男青、中、湖南话</item>
+        <item>小莹—女青、中、陕西话</item>
+        <item>小新—男童、中、普通话</item>
+        <item>楠楠—女童、中、普通话</item>
+        <item>老孙—男老、中、普通话</item>
+    </string-array>
+    <string-array name="voicer_cloud_values">
+        <item>xiaoyan</item>
+        <item>xiaoyu</item>
+        <item>catherine</item>
+        <item>henry</item>
+        <item>vimary</item>
+        <item>vixy</item>
+        <item>xiaoqi</item>
+        <item>vixf</item>
+        <item>xiaomei</item>
+        <item>xiaolin</item>
+        <item>xiaorong</item>
+        <item>xiaoqian</item>
+        <item>xiaokun</item>
+        <item>xiaoqiang</item>
+        <item>vixying</item>
+        <item>xiaoxin</item>
+        <item>nannan</item>
+        <item>vils</item>
+    </string-array>
+    <string-array name="emot_entries">
+        <item>正常</item>
+        <item>高兴</item>
+        <item>悲伤</item>
+        <item>生气</item>
+    </string-array>
+    <string-array name="emot_values">
+        <item>neutral</item>
+        <item>happy</item>
+        <item>sad</item>
+        <item>angry</item>
+    </string-array>
+    <string-array name="stream_entries">
+        <item>通话</item>
+        <item>系统</item>
+        <item>铃声</item>
+        <item>音乐</item>
+        <item>闹铃</item>
+        <item>通知</item>
+    </string-array>
+    <string-array name="stream_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string formatted="false" name="tts_toast_format">缓冲进度为%d%%，播放进度为%d%%</string>
+    <!-- 语言 -->
+    <string-array name="language_entries">
+        <item>普通话</item>
+        <item>粤语</item>
+        <item>英语</item>
+    </string-array>
+    <string-array name="language_values">
+        <item>mandarin</item>
+        <item>cantonese</item>
+        <item>en_us</item>
+    </string-array>
+    <!-- 语音评测 -->
+    <string name="text_en_word">"[word]\napple\nbanana\norange"</string>
+    <string name="text_en_sentence">"The quick brown fox jumps over the lazy dog."</string>
+    <string name="text_cn_syllable">"知，痴，是"</string>
+    <string name="text_cn_word">"磁铁，率领，脆弱，动手，古筝"</string>
+    <string name="text_cn_sentence">"一座座雪峰插入云霄，峰顶银光闪闪，大大小小的湖泊，像颗颗宝石镶嵌在彩带般的沟谷中。"</string>
+    <string-array name="ise_language_entries">
+        <item>英语</item>
+        <item>汉语</item>
+    </string-array>
+    <string-array name="ise_language_values">
+        <item>en_us</item>
+        <item>zh_cn</item>
+    </string-array>
+    <string-array name="category_entries">
+        <item>单字</item>
+        <item>词语</item>
+        <item>句子</item>
+    </string-array>
+    <string-array name="category_values">
+        <item>read_syllable</item>
+        <item>read_word</item>
+        <item>read_sentence</item>
+    </string-array>
+    <string-array name="result_level_entries">
+        <item>plain</item>
+        <item>complete</item>
+    </string-array>
+    <!-- 标点符号 -->
+    <string-array name="punc_entries">
+        <item>有标点</item>
+        <item>无标点</item>
+    </string-array>
+    <string-array name="punc_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="dwa_entries">
+        <item>开启</item>
+        <item>关闭</item>
+    </string-array>
+    <string-array name="iat_language_entries">
+        <item>中文</item>
+        <item>英语</item>
+        <item>日语</item>
+        <item>俄语</item>
+        <item>西班牙语</item>
+        <item>法语</item>
+        <item>韩语</item>
+    </string-array>
+    <string-array name="iat_language_value">
+        <item>zh_cn</item>
+        <item>en_us</item>
+        <item>ja_jp</item>
+        <item>ru-ru</item>
+        <item>es_es</item>
+        <item>fr_fr</item>
+        <item>ko_kr</item>
+    </string-array>
+
+
+    <!-- 语言 -->
+    <string-array name="machine_entries">
+        <item>鲁谷</item>
+        <item>广州</item>
+        <item>森华</item>
+    </string-array>
+    <string-array name="machine_values">
+        <item>http://bj.voicecloud.cn/msp.do</item>
+        <item>http://gz.voicecloud.cn/msp.do</item>
+        <item>http://dx.xf-yun.com/msp.do</item>
+    </string-array>
+
+
+</resources>

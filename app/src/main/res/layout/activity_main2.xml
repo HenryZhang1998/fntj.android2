@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="false"
+    android:keepScreenOn="true"
+    android:background="@drawable/bg_2"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent">
+
+        <ImageView
+            android:id="@+id/ivMainTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/xuanzhexingzuo000"
+        />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|center_horizontal|center_vertical">
+
+        <Button
+            android:id="@+id/zsk"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center|center_horizontal|center_vertical"
+
+            android:drawableTop="@drawable/i_b6"
+            android:paddingTop="30dp"
+            android:background="@drawable/button_kno"
+
+            android:text="@string/zsk"
+            android:textSize="40dp"
+            android:textColor="@color/white_slight"
+            android:onClick="knowledgeClick" />
+
+        <Button
+            android:id="@+id/tjjd"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:drawableTop="@drawable/i_g3"
+            android:paddingTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/button_prog"
+
+            android:text="体检进度查询"
+            android:textSize="40dp"
+            android:textColor="@color/white_slight"
+            android:onClick="progressClick"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="回前台"
+            android:drawableRight="@drawable/send_light"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/buttons_show_hide_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="150dp"
+        android:layout_marginRight="20dp"
+
+        >
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            >
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lt_view"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                app:lottie_fileName="37270/data.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/ltc_view"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:visibility="invisible"
+                app:lottie_fileName="lottie/53969-click.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"/>
+        </FrameLayout>
+    </RelativeLayout>
+    <!--android:background="@drawable/ic_main_menu"-->
+    <!--扇形图标-->
+    <RelativeLayout
+        android:id="@+id/buttons_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <ImageButton
+            android:id="@+id/button_home"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="500dp"
+            android:layout_marginBottom="200dp"
+            android:background="@drawable/ic_home_w"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/button_charge"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="360dp"
+            android:layout_marginBottom="200dp"
+            android:background="@drawable/ic_charge_w"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/button_wc"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="220dp"
+            android:layout_marginBottom="200dp"
+            android:background="@drawable/ic_wc"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

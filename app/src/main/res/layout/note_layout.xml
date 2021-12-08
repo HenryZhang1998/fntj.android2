@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--扇形图标-->
+    <RelativeLayout
+        android:id="@+id/buttons_wrapper_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <ImageButton
+            android:id="@+id/button_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/ic_011"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/button_people"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="60dp"
+            android:background="@drawable/ic_012"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/button_place"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="55dp"
+            android:background="@drawable/ic_010"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

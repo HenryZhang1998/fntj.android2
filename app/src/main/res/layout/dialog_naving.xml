@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="800px"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/edit_item_text_bg"
+    android:padding="@dimen/item_left_tv_padding"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lt_view"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:lottie_fileName="15123/data.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        >
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="42dp"
+            android:text="正在导航到：前台" />
+    </LinearLayout>
+    <View style="@style/divider_horizontal_1px" android:layout_marginBottom="@dimen/item_padding_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <!--<Button
+            android:id="@+id/btnCancelNav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_cancel"
+            android:textSize="38dp"
+            android:text="取消导航"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>-->
+        <FrameLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_vertical|center_horizontal"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/btnCancelNav"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:lottie_fileName="lottie/54943-button-background.json"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="取消导航"
+                android:textSize="42dp"
+                android:gravity="center|center_vertical|center_horizontal"
+                android:layout_gravity="center|center_horizontal|center_vertical"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

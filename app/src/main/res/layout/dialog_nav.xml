@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="800px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edit_item_text_bg"
+    android:padding="@dimen/item_left_tv_padding"
+    android:clickable="true"
+    android:orientation="vertical" >
+
+    <ScrollView style="@style/match_match" >
+
+        <LinearLayout style="@style/ll_vertical_match_match" >
+            <LinearLayout
+                style="@style/content_item_white"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvTitle"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="确认导航"
+                    android:textSize="28dp"/>
+            </LinearLayout>
+
+            <View style="@style/divider_horizontal_1px" android:layout_marginBottom="@dimen/item_padding_bottom" />
+
+            <LinearLayout
+                style="@style/content_item_white"
+                android:layout_height="wrap_content"
+                android:paddingTop="50dp"
+                android:paddingBottom="50dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvMessage1"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="点击【确认】按钮，小曼将带您去："
+                    android:textSize="42dp" />
+                <TextView
+                    android:id="@+id/tvMessage"
+                    style="@style/content_item_rt_tv"
+                    android:gravity="center|center_horizontal|center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:text="--"
+                    android:textSize="52dp" />
+
+            </LinearLayout>
+
+            <!--<LinearLayout
+                style="@style/content_item_white"
+                android:layout_height="wrap_content">
+
+
+                <Button
+                    android:id="@+id/btnCancelNav"
+                    style="@style/content_item_rt_tv"
+                    android:background="@drawable/button_cancel"
+                    android:drawableLeft="@drawable/btn_back_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:text="取消" />
+                <Button
+                    style="@style/content_item_rt_tv"
+                    android:id="@+id/btnStartNav"
+                    android:textColor="@color/black_to_white"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:drawableRight="@drawable/send_light"
+                    android:background="@drawable/button_ok"
+                    android:layout_marginLeft="20dp"
+                    android:text="确认"
+                    android:textSize="25dp"/>
+            </LinearLayout>-->
+
+            <View style="@style/divider_horizontal_1px" android:layout_marginBottom="@dimen/item_padding_bottom" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center" >
+
+                <!--style="@style/text_huge_black"
+                    android:background="@drawable/button_scan"
+                    -->
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:id="@+id/btnCancelNav"
+                        android:text="取消"
+                        android:textSize="42dp"
+                        android:layout_width="240px"
+                        android:layout_height="80dp" />
+
+                </LinearLayout>
+                <FrameLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    >
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/btnStartNav"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        app:lottie_fileName="lottie/54943-button-background.json"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="确认"
+                        android:textSize="42dp"
+                        android:gravity="center|center_vertical|center_horizontal"
+                        android:layout_gravity="center|center_horizontal|center_vertical"/>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

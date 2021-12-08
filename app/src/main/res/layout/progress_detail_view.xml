@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ListView中的ItemView里不要用Button等默认hasFocus的控件，以免onItemClick事件无响应 -->
+<!-- 如果一定要用，则必须在根布局加上 android:descendantFocusability="blocksDescendants" -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_horizontal_match_wrap"
+    android:padding="5sp" >
+
+    <RelativeLayout style="@style/match_wrap" >
+
+        <ImageView
+            android:id="@+id/ivHead"
+            android:layout_height="30sp"
+            android:layout_width="30sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/send_light" />
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/text_huge_black"
+            android:layout_alignTop="@+id/ivHead"
+            android:layout_marginRight="6sp"
+            android:layout_toRightOf="@+id/ivHead"
+            android:textSize="24sp"
+            android:text="--"
+            android:onClick="onClick"/>
+
+        <LinearLayout
+            style="@style/ll_vertical_match_wrap"
+            android:id="@+id/tvDemoComplexViewDetailLinearLayout"
+            android:layout_below="@+id/ivHead"
+            android:layout_toRightOf="@+id/ivHead"
+            android:background="@color/alpha_6"
+            android:gravity="left"
+            android:layout_marginTop="5sp"
+            android:padding="10sp">
+
+            <TextView
+                android:id="@+id/tvsense"
+                style="@style/text_middle_white"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:text="--" />
+
+            <TextView
+                android:id="@+id/tvitems"
+                style="@style/text_middle_white"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:text="--" />
+
+            <TextView
+                android:id="@+id/tvtip"
+                style="@style/text_middle_white"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:text="--" />
+            <TextView
+                android:id="@+id/tvdoneTime"
+                style="@style/text_middle_white"
+                android:gravity="left"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:text="--" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

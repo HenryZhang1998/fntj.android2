@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/layoutItem"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:gravity="center">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.fntj.lib.zb.ui.RectangleRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="180sp"
+                android:layout_height="180sp"
+                android:scaleType="centerCrop" />
+
+            <!--
+            android:scaleType="centerCrop"
+                style="@style/match_match"
+                android:background="@color/alpha_3"-->
+            <!--<ImageView
+                android:id="@+id/ivGridItemCheck"
+                style="@style/wrap_wrap"
+                android:visibility="gone" />-->
+        </com.fntj.lib.zb.ui.RectangleRelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/item_name_layout"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:background="#000000">
+        <TextView
+            android:id="@+id/tvGridItemName"
+            style="@style/text_large"
+            android:layout_marginTop="20dp"
+            android:text="测试"
+            android:textColor="@color/white"
+            android:textSize="32dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
