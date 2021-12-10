@@ -36,8 +36,12 @@ import com.speech.abstracts.IRecognizeListener;
 import com.speech.abstracts.IResultProcessor;
 import com.speech.abstracts.ISpeakListener;
 import com.speech.processor.SpeechPlugin;
+import com.speech.util.FileUtil;
+import com.speech.util.PathManager;
 
 import java.io.File;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,6 +158,7 @@ public class RobotHandler implements SpeekHandler {
                     for (Map.Entry<String, String> kv : navList.entrySet()) {
                         Locations.put(kv.getKey(), kv.getValue());
                     }
+                    Log.d("Locations", Locations.toString());
                 }
 
             } catch (Exception ex2) {
@@ -561,10 +566,11 @@ public class RobotHandler implements SpeekHandler {
                     }
 
                     wifiIP = arr[2];
-                    Log.i("wifiIP", wifiIP);
+                    Log.i("android_target", wifiIP);
 
                     //获取局域网机器目标点列表
                     String url = "http://" + wifiIP + "/reeman/android_target";
+                    Log.i("android_target", url);
 
                     RobotApi.simpleGet(MyApplication.getInstance(), url, new RobotApi.MyResponseListener<String>() {
                         @Override
@@ -575,13 +581,51 @@ public class RobotHandler implements SpeekHandler {
                         @Override
                         public void onSuccess(String data) {
                             Log.i("android_target", data);
+
                             //{"A点":["-3.66","-0.06","-110.96"],"B点":["-4.27","-1.36","0.00"],"C点":["-3.47","-2.27","73.41"],"D点":["-2.54","-1.29","180.00"]}
+                            //A点:-3.66,-0.06,-110.96;B点:-4.27,-1.36,0.00
+
+                            List<String> list = new ArrayList();
+                            StringBuilder sb = new StringBuilder();
 
                             JSONObject j = JSON.parseObject(data);
                             for (String key : j.keySet()) {
                                 List<String> points = j.getJSONArray(key).toJavaList(String.class);
+                                String loc = StringUtil.join(points, ",");
 
-                                Locations.put(key, StringUtil.join(points, ","));
+                                Locations.put(key, loc);
+                                list.add(key);
+
+                                if(sb.length() > 0) {
+                                    sb.append(";");
+                                }
+
+                                sb.append(key + ":" + loc);
+                            }
+
+                            //写入本地locations.cfg文本
+                            FileUtil.writeSDFile(sb.toString(), PathManager.nav_coordinate + "/locations.cfg");
+
+                            Log.d("android_target", "写入本地locations.cfg文本");
+
+                            try {
+                                Method setContactLocations = SpeechPlugin.class.getDeclaredMethod("setContactLocations");
+                                if(setContactLocations != null) {
+                                    setContactLocations.setAccessible(true);
+                                    setContactLocations.invoke(SpeechPlugin.getInstance(), Locations);
+                                }
+
+                                Log.d("android_target", "setContactLocations ok");
+                                Method setNavList = SpeechPlugin.class.getDeclaredMethod("setNavList");
+                                if(setNavList != null) {
+                                    setNavList.setAccessible(true);
+                                    setNavList.invoke(SpeechPlugin.getInstance(), list);
+                                }
+
+                                Log.d("android_target", "setNavList ok");
+                            } catch (Exception ex) {
+                                Log.e("android_target", "加载导航位置信息出错，文件格式错误");
+                                Log.e("android_target", ex.getMessage(), ex);
                             }
                         }
                     });

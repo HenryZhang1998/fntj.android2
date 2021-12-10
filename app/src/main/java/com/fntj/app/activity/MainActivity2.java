@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -76,7 +77,7 @@ public class MainActivity2 extends BaseActivity implements OnBottomDragListener 
         String doc = DoctorUtil.findName("你好，我想了解下礼寺医生");
         System.out.println(doc);
 
-        SpeechUtility.createUtility(this, "appid=" + ifly_id);
+        SpeechUtility speechUtility = SpeechUtility.createUtility(this, "appid=" + ifly_id);
 
         //SpeechPlugin.CreateSpeechUtility(MyApplication.getInstance(), RobotHandler.IFLY_ID, RobotHandler.REEMAN_ID);
         SpeechPlugin.CreateSpeechUtility(MyApplication.getInstance(), ifly_id2, reeman_id);     // 第二个参数为讯飞ID、第三个参数为锐曼ID
